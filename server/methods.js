@@ -18,6 +18,7 @@ Meteor.methods({
       start_time: start.toDate(),
       end_time: end.toDate(),
       status: 0,
+      hangman_phrase: hangman_phrase,
       letters_guessed: []
     };
     Games.insert(game, function(error) {

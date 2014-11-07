@@ -1,7 +1,6 @@
 <template name="gamesList">
-  <a href="#" id="newGame">Create own game</a>
-  <h2 class="pull-left">Active games</h2>
-  <table class="">
+  <h2>Active games</h2>
+  <table>
     <thead>
       <td>Host Name</td>
       <td>Total Players</td>
@@ -12,6 +11,7 @@
       <td>{{host.name}}</td>
       <td>{{players}} / {{max_players}}</td>
       <td>{{status}} / 8</td>
+      <td><a href="{{pathFor route='game' _id=_id}}">Join</a></td>
     </tr>
     {{/each}}
   </table>
