@@ -12,16 +12,16 @@
   <a href="#" id="newGame">Create own game</a>
   <h2 class="pull-left">Active games</h2>
   <table class="">
-    <th>
+    <thead>
       <td>Host Name</td>
       <td>Total Players</td>
       <td>Status</td>
-    </th>
+    </thead>
     {{#each activeGames}}
     <tr>
-      <td>{{host}}</td>
-      <td>{{players}}</td>
-      <td>{{status}}</td>
+      <td>{{host.name}}</td>
+      <td>{{players}} / {{max_players}}</td>
+      <td>{{status}} / 8</td>
     </tr>
     {{/each}}
   </table>
