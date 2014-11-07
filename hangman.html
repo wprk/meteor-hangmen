@@ -3,12 +3,30 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Welcome to Hangmen!</h1>
 
-  {{> hello}}
+  {{> gamesList}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="gamesList">
+  <a href="#" id="newGame">Create own game</a>
+  <h2 class="pull-left">Active games</h2>
+  <table class="">
+    <th>
+      <td>Host Name</td>
+      <td>Total Players</td>
+      <td>Status</td>
+    </th>
+    {{#each activeGames}}
+    <tr>
+      <td>{{host}}</td>
+      <td>{{players}}</td>
+      <td>{{status}}</td>
+    </tr>
+    {{/each}}
+  </table>
+</template>
+
+<template name="game">
+  <p>Game will go here</p>
 </template>
