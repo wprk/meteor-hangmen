@@ -3,4 +3,7 @@
 	{{max_players}}
 	<p>Phrase: {{hangman_phrase.phrase}}</p>
 	{{blah}}
+	{{#each lettersList letters_guessed}}
+	<span>{{letter}} - {{value}}</span>
+	{{/each}}
 </template>
