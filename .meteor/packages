@@ -6,7 +6,5 @@
 meteor-platform
 insecure
 mrt:moment
-autopublish
 mizzao:timesync
 iron:router
-

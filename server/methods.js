@@ -19,7 +19,7 @@ Meteor.methods({
       end_time: end.toDate(),
       status: 0,
       hangman_phrase: hangman_phrase,
-      letters_guessed: ['a', 'e', 'i', 'o', 'u']
+      letters_guessed: {}
     };
     Games.insert(game, function(error) {
       if (error) {
@@ -29,5 +29,12 @@ Meteor.methods({
         return true;
       }
     });
+  },
+  guessLetter: function (letter) {
+    if (letter in ARRAY_ALPHABET) {
+      return true;
+    } else {
+      return false;
+    }
   }
 });
