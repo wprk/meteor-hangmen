@@ -29,18 +29,21 @@ Meteor.methods({
   },
   guessLetter: function (gameId, letter) {
     game = Games.findOne({_id: gameId});
-    newEventLog = game.eventLog;
+    
     newGuesses = game.letters_guessed;
     newGuesses[letter] = 1;
     Games.update(gameId, {$set: { letters_guessed: newGuesses}});
-    if (letter.match(/^[a-z]+$/)) { // is valid lowercase letter
-      if (game.hangman_phrase.indexOf(letter) === -1) { // is incorrect guess
+    
+    if (letter.match(/^[a-z]+$/)) {
+      // is valid lowercase letter
+      if (game.hangman_phrase.indexOf(letter) === -1) {
+        // is incorrect guess
         Games.update(gameId, { $inc: {status: 1}});
-        newEventLog.push({eventTime: moment().toDate(), eventDesc: 'Testing User guessed letter "' + letter + '" incorrectly'});
-      } else {  // is correct guess
-        newEventLog.push({eventTime: moment().toDate(), eventDesc: 'Yeeehaa Testing User correctly guessed letter "' + letter});
+        GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'incorrectGuess', eventDesc: 'Testing User guessed letter "' + letter + '" incorrectly'});
+      } else {
+        // is correct guess
+        GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'correctGuess', eventDesc: 'Yeeehaa Testing User correctly guessed letter "' + letter});
       }
     }
-    Games.update(gameId, {$set: {eventLog: newEventLog}});
   }
 });

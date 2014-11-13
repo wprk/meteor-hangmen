@@ -6,3 +6,7 @@ Meteor.publish('gamesList', function() {
 Meteor.publish('game', function(gameId) {
   return Games.find({_id: gameId}); 
 });
+
+Meteor.publish('gameEvents', function(gameId) {
+  return GameEvents.find({gameId: gameId}); 
+});

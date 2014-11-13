@@ -34,6 +34,9 @@ Template.game.helpers({
     } else {
       return 'unguessed';
     }
+  },
+  gameEvents: function(gameId) {
+    return GameEvents.find({gameId: gameId});
   }
 })
 
