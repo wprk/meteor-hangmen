@@ -1,0 +1,53 @@
+/* CSS declarations go here */
+
+/* Handwriting font used for hangman words */
+@import url(http://fonts.googleapis.com/css?family=Gloria+Hallelujah);
+
+.lettersList {
+  .letter {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  background: #ccc;
+    color: #fff;
+    text-align: center;
+    &.unguessed {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &.guessed {
+      &:hover {
+        cursor: default;
+      }
+      background: #000;
+      font-size: 20px;
+      line-height: 16px;
+    }
+  }
+}
+
+.guessedPhrase {
+  .word {
+    display: inline-block;
+    padding: 20px 20px 20px 0;
+    background: #fff;
+    .letter {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-bottom: 1px solid #000;
+      &.unguessed {
+        
+      }
+      &.guessed {
+        color: #000;
+        font-size: 20px;
+        text-align: center;
+        line-height: 14px;
+        font-family: 'Gloria Hallelujah', cursive;
+      }
+    }
+  }
+}

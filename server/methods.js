@@ -1,27 +1,24 @@
 Meteor.methods({
-  newGame: function () {
-    var max_players = 8;
-    var time_limit = 7; // in minutes
+  newGame: function (phrase, max_players, time_limit) {
+    var phrase = 'This is a sentence'.toLowerCase();
+    var max_players = (max_players ? max_players : 8);
+    var time_limit = (time_limit ? time_limit : 7); // in minutes
     var start = moment();
     var end = moment().add(time_limit, 'minutes');
-    var phrase = 'This is the phrase';
-    var words = [ {length: 4}, {length: 2}, {length: 3}, {length: 8} ];
-    var hangman_phrase = {
-      phrase: 'This is the sentence',
-      words: words
-    };
+    var user = {name: 'Testing User'};
     var game = {
-      host: {name: 'Testing User'},
-      players: 1,
+      host: user,
+      players: [user],
       max_players: max_players,
       time_limit: time_limit,
       start_time: start.toDate(),
       end_time: end.toDate(),
       status: 0,
-      hangman_phrase: hangman_phrase,
-      letters_guessed: {}
+      hangman_phrase: phrase,
+      letters_guessed: {},
+      eventLog: []
     };
-    Games.insert(game, function(error) {
+    var gameId = Games.insert(game, function(error) {
       if (error) {
         console.log(error);
         return false;
@@ -30,11 +27,29 @@ Meteor.methods({
       }
     });
   },
-  guessLetter: function (letter) {
-    if (letter in ARRAY_ALPHABET) {
-      return true;
-    } else {
-      return false;
+  guessLetter: function (gameId, letter) {
+    game = Games.findOne({_id: gameId});
+    newEventLog = game.eventLog;
+    newGuesses = game.letters_guessed;
+    newGuesses[letter] = 1;
+    Games.update(gameId, {$set: { letters_guessed: newGuesses}});
+    if (letter.match(/^[a-z]+$/)) { // is valid lowercase letter
+      if (game.hangman_phrase.indexOf(letter) === -1) { // is incorrect guess
+        Games.update(gameId, { $inc: {status: 1}});
+        newEventLog.push({eventTime: moment().toDate(), eventDesc: 'Testing User guessed letter "' + letter + '" incorrectly'});
+      } else {  // is correct guess
+        newEventLog.push({eventTime: moment().toDate(), eventDesc: 'Yeeehaa Testing User correctly guessed letter "' + letter});
+      }
     }
+    Games.update(gameId, {$set: {eventLog: newEventLog}});
   }
 });
+
+var calculateWordLengths = function(phrase) {
+  var wordArray = phrase.split(" ");
+  var words = [];
+  for(var w = 0; w < wordArray.length; w++) {
+    words.push({length: wordArray[w].length});
+  }
+  return words;
+}

@@ -9,8 +9,8 @@
     {{#each activeGames}}
     <tr>
       <td>{{host.name}}</td>
-      <td>{{players}} / {{max_players}}</td>
-      <td>{{status}} / 8</td>
+      <td>{{playerCount players}} / {{max_players}}</td>
+      <td>{{readableStatus status}}</td>
       <td><a href="{{pathFor route='game' _id=_id}}">Join</a></td>
     </tr>
     {{/each}}

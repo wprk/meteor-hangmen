@@ -1,8 +1,31 @@
 <template name="game">
 	<h1>Hangman</h1>
-	{{max_players}}
-	<p>Phrase: {{hangman_phrase.phrase}}</p>
-	{{#each lettersList letters_guessed}}
-	<span>{{letter}} - {{value}}</span>
-	{{/each}}
+
+	<div class="row">
+		<div class="col-md-12 guessedPhrase">
+			{{#each printPhrase hangman_phrase letters_guessed}}
+			<div class="word">
+				{{#each letters}}
+					<div class="letter {{class}}">{{{value}}}</div>
+				{{/each}}
+			</div>
+			{{/each}}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 lettersList">
+			{{#each lettersList letters_guessed}}
+				<div class="letter {{guessStatus value}}">{{letter}}</div>
+			{{/each}}
+		</div>
+	</div>
+	
+	<div class="row">
+		{{#each eventLog}}
+			<div class="col-md-12">
+				{{eventDesc}}
+			</div>
+		{{/each}}
+	</div>
 </template>
