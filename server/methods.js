@@ -44,12 +44,3 @@ Meteor.methods({
     Games.update(gameId, {$set: {eventLog: newEventLog}});
   }
 });
-
-var calculateWordLengths = function(phrase) {
-  var wordArray = phrase.split(" ");
-  var words = [];
-  for(var w = 0; w < wordArray.length; w++) {
-    words.push({length: wordArray[w].length});
-  }
-  return words;
-}

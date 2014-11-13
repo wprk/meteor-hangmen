@@ -1,7 +1,8 @@
 <template name="home">
-	<h1>Welcome to Hangman</h1>
-	
-	<a href="#" id="newGame">Create new game</a>
-
-	<a href="{{pathFor 'gamesList'}}" id="joinGame">Join existing game</a>
+	<a class="col-xs-12 btn btn-primary" href="#" id="newGame">Create new game</a>
+	{{#if noGamesExist}}
+		<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame" disabled="disabled">Join existing game</a>
+	{{else}}
+		<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame">Join existing game</a>
+	{{/if}}
 </template>
