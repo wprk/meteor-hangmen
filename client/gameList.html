@@ -1,18 +1,20 @@
 <template name="gamesList">
-  <h2>Active games</h2>
-  <table>
-    <thead>
-      <td>Host Name</td>
-      <td>Total Players</td>
-      <td>Status</td>
-    </thead>
-    {{#each activeGames}}
-    <tr>
-      <td>{{host.name}}</td>
-      <td>{{playerCount players}} / {{max_players}}</td>
-      <td>{{readableStatus status}}</td>
-      <td><a href="{{pathFor route='game' _id=_id}}">Join</a></td>
-    </tr>
-    {{/each}}
-  </table>
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 gameslist">
+		<h2>Active games</h2>
+		<table class="table table-striped">
+			<thead>
+				<td>Host Name</td>
+				<td>Total Players</td>
+				<td>Status</td>
+			</thead>
+			{{#each activeGames}}
+				<tr>
+					<td>{{host.name}}</td>
+					<td>{{playerCount players}} / {{max_players}}</td>
+					<td>{{readableStatus status}}</td>
+					<td><a href="{{pathFor route='game' _id=_id}}">Join</a></td>
+				</tr>
+			{{/each}}
+		</table>
+	</div>
 </template>

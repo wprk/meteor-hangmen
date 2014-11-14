@@ -3,28 +3,16 @@
 /* Handwriting font used for hangman words */
 @import url(http://fonts.googleapis.com/css?family=Gloria+Hallelujah);
 
-.lettersList {
-  .letter {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-  background: #ccc;
-    color: #fff;
-    text-align: center;
-    &.unguessed {
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    &.guessed {
-      &:hover {
-        cursor: default;
-      }
-      background: #000;
-      font-size: 20px;
-      line-height: 16px;
-    }
-  }
+body {
+  margin-top: 50px;
+}
+
+.home a.btn {
+  margin-bottom: 10px;
+}
+
+.game, .gameslist {
+  margin-top: 20px;
 }
 
 .guessedPhrase {
@@ -47,6 +35,32 @@
         text-align: center;
         line-height: 14px;
         font-family: 'Gloria Hallelujah', cursive;
+      }
+    }
+  }
+}
+
+.lettersList {
+  .letter {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0 5px 7px 0;
+    background: #ccc;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+    &.unguessed {
+      &:hover {
+        background: #000;
+        cursor: pointer;
+      }
+    }
+    &.guessed {
+      background: #000;
+      &:hover {
+        cursor: default;
       }
     }
   }

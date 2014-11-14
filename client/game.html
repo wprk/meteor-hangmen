@@ -1,31 +1,35 @@
 <template name="game">
-	<h1>Hangman</h1>
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 game">
 
-	<div class="row">
-		<div class="col-md-12 guessedPhrase">
-			{{#each printPhrase hangman_phrase letters_guessed}}
-			<div class="word">
-				{{#each letters}}
-					<div class="letter {{class}}">{{{value}}}</div>
+		<img class="game_status" src="/public/imgs/status-{{status}}.png" />
+
+		<div class="row">
+			<div class="col-md-12 guessedPhrase">
+				{{#each printPhrase hangman_phrase letters_guessed}}
+				<div class="word">
+					{{#each letters}}
+						<div class="letter {{class}}">{{{value}}}</div>
+					{{/each}}
+				</div>
 				{{/each}}
 			</div>
-			{{/each}}
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-md-12 lettersList">
-			{{#each lettersList letters_guessed}}
-				<div class="letter {{guessStatus value}}">{{letter}}</div>
+		<div class="row">
+			<div class="col-md-12 lettersList">
+				{{#each lettersList letters_guessed}}
+					<div class="letter {{guessStatus value}}">{{letter}}</div>
+				{{/each}}
+			</div>
+		</div>
+		
+		<div class="row">
+			{{#each gameEvents _id}}
+				<div class="col-md-12">
+					{{eventDesc}}
+				</div>
 			{{/each}}
 		</div>
-	</div>
-	
-	<div class="row">
-		{{#each gameEvents _id}}
-			<div class="col-md-12">
-				{{eventDesc}}
-			</div>
-		{{/each}}
+		
 	</div>
 </template>

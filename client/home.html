@@ -1,8 +1,18 @@
 <template name="home">
-	<a class="col-xs-12 btn btn-primary" href="#" id="newGame">Create new game</a>
-	{{#if noGamesExist}}
-		<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame" disabled="disabled">Join existing game</a>
-	{{else}}
-		<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame">Join existing game</a>
-	{{/if}}
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 home">
+		<div class="col-md-12" style="text-align: center;">
+			<img src="/imgs/hangmen-home.jpg" />
+		</div>
+		
+		{{#if currentUser}}
+			<a class="col-xs-12 btn btn-primary" href="#" id="newGame">Create new game</a>
+			{{#if noGamesExist}}
+				<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame" disabled="disabled">Join existing game</a>
+			{{else}}
+				<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame">Join existing game</a>
+			{{/if}}
+		{{else}}
+			<p>You must login to play the game</p>
+		{{/if}}
+	</div>
 </template>

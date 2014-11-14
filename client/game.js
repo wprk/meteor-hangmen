@@ -9,7 +9,6 @@ Template.game.helpers({
   },
   printPhrase: function(phrase, letters_guessed) {
     letters = phrase.split('');
-    console.log(letters);
     var words = [];
     var word = [];
     for(i = 0; i < letters.length; i++) {
@@ -25,7 +24,6 @@ Template.game.helpers({
       }
     }
     words.push({letters: word});
-    console.log(words);
     return words;
   },
   guessStatus: function(value) {
