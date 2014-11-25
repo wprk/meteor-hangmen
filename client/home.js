@@ -7,8 +7,9 @@ Template.home.helpers({
 Template.home.events({
   'click #newGame': function() {
     Meteor.call('newGame', function(error, gameId) {
-    	 console.log(gameId);
-      Router.go('game', {_id: gameId});
+      if (! error) {
+        Router.go('game', {_id: gameId});
+      }
     });
   }
 })

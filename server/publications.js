@@ -1,3 +1,9 @@
+// Publish all user roles
+Meteor.publish(null, function (){ 
+  return Meteor.roles.find({})
+})
+
+// Publish data needed for game
 Meteor.publish('gamesList', function() {
   return Games.find({});
     return Games.find({end_time: {$gte: new Date}});
