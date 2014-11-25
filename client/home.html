@@ -5,7 +5,7 @@
 		</div>
 		
 		{{#if currentUser}}
-			<a class="col-xs-12 btn btn-primary" href="#" id="newGame">Create new game</a>
+			<a class="col-xs-12 btn btn-primary" href="#" id="launchGameModal">Create new game</a>
 			{{#if noGamesExist}}
 				<a class="col-xs-12 btn btn-success" href="{{pathFor 'gamesList'}}" id="joinGame" disabled="disabled">Join existing game</a>
 			{{else}}
@@ -15,4 +15,44 @@
 			<p>You must login to play the game</p>
 		{{/if}}
 	</div>
+	{{#if creatingGame}}
+	<div id="newGameModal" class="modal show">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Enter new game information</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="phrase" class="control-label">Hangman Phrase:</label>
+						<input type="text" class="form-control" id="phrase">
+					</div>
+					<div class="form-group">
+						<label for="clue" class="control-label">Clue: (optional)</label>
+						<input type="text" class="form-control" id="clue">
+					</div>
+					<div class="form-group">
+						<label for="maxPlayers" class="control-label">Max Players:</label>
+						<div class="input-group">
+							<input type="text" class="form-control slider" id="maxPlayers" value="4">
+							<div class="input-group-addon">Players</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="timeLimit" class="control-label">Max Duration:</label>
+						<div class="input-group">
+							<input type="text" class="form-control slider" id="timeLimit" value="10">
+							<div class="input-group-addon">Minutes</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="newGame">Create Game</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	{{/if}}
 </template>

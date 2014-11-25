@@ -1,13 +1,13 @@
 Meteor.methods({
   newGame: function (phrase, max_players, time_limit) {
-    var phrase = 'This is a sentence'.toLowerCase();
+    var phrase = phrase.toLowerCase();
     var max_players = (max_players ? max_players : 8);
     var time_limit = (time_limit ? time_limit : 7); // in minutes
     var start = moment();
     var end = moment().add(time_limit, 'minutes');
     var user = Meteor.user();
     var game = {
-      host: Meteor.user()._id,
+      host: {_id: user._id, name: user.profile.name },
       players: [],
       max_players: max_players,
       time_limit: time_limit,
@@ -38,7 +38,7 @@ Meteor.methods({
         GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'guessIncorrect', eventDesc: Meteor.user().profile.name + ' guessed letter "' + letter + '" incorrectly'});
       } else {
         // is correct guess
-        GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'guessCorrect', eventDesc: 'Yeeehaa ' + Meteor.user().profile.name + ' correctly guessed letter "' + letter});
+        GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'guessCorrect', eventDesc: Meteor.user().profile.name + ' correctly guessed letter "' + letter});
       }
     }
   },
@@ -56,7 +56,7 @@ Meteor.methods({
               if (game.players.indexOf(Meteor.userId()) === -1) {
                 console.log('player added');
                 Games.update(gameId, { $push: { 'players': {_id: Meteor.userId()}}});
-                GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'playerJoined', eventDesc: 'Roll up, Roll up... ' + Meteor.user().profile.name + ' is now playing'});
+                GameEvents.insert({gameId: gameId, eventTime: moment().toDate(), eventType: 'playerJoined', eventDesc: Meteor.user().profile.name + ' joined the game'});
               }
             } else {
              console.log('game full');

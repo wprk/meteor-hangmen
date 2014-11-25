@@ -5,14 +5,14 @@
 
 meteor-platform
 insecure
-mrt:moment
-mizzao:timesync
-iron:router
 less
-mizzao:bootstrap-3
-ian:accounts-ui-bootstrap-3
-accounts-password
 jquery
-alanning:roles
+iron:router
 mizzao:user-status
-
+service-configuration
+accounts-ui
+accounts-google
+accounts-facebook
+alanning:roles
+mrt:moment
+mizzao:bootstrap-3
